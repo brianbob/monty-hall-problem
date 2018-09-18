@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import os
-from random import randint
+import random
 
 path = "database.txt"
 database = open(path, "r+")
@@ -29,21 +29,37 @@ if os.stat(path).st_size > 0 :
 # calculate total (for use in percentages)
 total_rounds = stays + switches
 
+# Create our door options
 doors = [1, 2, 3]
-prize = randint(0,2)
-doors.pop(prize);
-print(doors);
-exit(1);
 
-# Re-open the file for writing so that it is overwritten.
-database = open(path, 'w')
+# Pick a door at random to be the 'prize door'
+prize = random.choice(doors)
 
 print("There is a prize behind on of these three doors...")
 print("   [1]   [2]   [3]")
-door = input("What door is the prize behind? ")
 
+# Get the user's door choice
+first_choice = input("What door is the prize behind? ")
 print("you picked door #" + str(door))
 
+# Give the user the option to switch
+# Fist tho, remove the prize door from our list of options
+doors.pop(prize)
+
+# If the user didn't pick the prize door, make sure the door they choice is
+# removed from the options
+if first_choice != prize :
+  doors.pop(first_choice)
+
+# Pick a goat door that is not the prize door and is not the user's pick.
+goat = random.choice(doors)
+
+# @todo ask the user if they want to switch
+# @todo compute results
+# @todo log results
+
+# Re-open the file for writing so that it is overwritten.
+database = open(path, 'w')
 # write the results to the file
 database.write("Results file. Line 2 is stays, 3 is switches, line 4 is switches that turned out to be right, and line 5 is stays that turned out to be right. \n")
 database.write(stays)
