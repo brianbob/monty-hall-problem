@@ -40,21 +40,28 @@ print("   [1]   [2]   [3]")
 
 # Get the user's door choice
 first_choice = input("What door is the prize behind? ")
-print("you picked door #" + str(door))
+print("you picked door #" + str(first_choice))
 
 # Give the user the option to switch
 # Fist tho, remove the prize door from our list of options
-doors.pop(prize)
+doors.pop(prize-1)
 
 # If the user didn't pick the prize door, make sure the door they choice is
 # removed from the options
 if first_choice != prize :
-  doors.pop(first_choice)
+  doors.pop(first_choice-1)
 
 # Pick a goat door that is not the prize door and is not the user's pick.
 goat = random.choice(doors)
+#remove the goat door from the list of options.
+doors.pop(goat-1)
+print("There is a goat behind door # " + str(goat))
 
-# @todo ask the user if they want to switch
+# get the last door number.
+last = doors.pop()
+# Ask the user if they want to switch
+switch = input("Do you want to switch your pick from door #" + str(first_choice) + " to door #" + str(last) + "? (y/n)")
+
 # @todo compute results
 # @todo log results
 
