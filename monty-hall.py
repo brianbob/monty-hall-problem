@@ -63,7 +63,7 @@ last = doors.pop()
 switch = input("Do you want to switch your pick from door #" + str(first_choice) + " to door #" + str(last) + "? (y/n)")
 
 # @todo compute results
-# @todo log results
+ @todo log results
 
 # Re-open the file for writing so that it is overwritten.
 database = open(path, 'w')
@@ -74,3 +74,5 @@ database.write(switches)
 database.write(switches_right)
 database.write(stays_right)
 database.close()
+
+# comment
